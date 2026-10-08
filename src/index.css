@@ -1,0 +1,144 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-base: #04060F;
+    --bg-raised: #070B1A;
+    --bg-card: #0B1226;
+    --border-glass: rgba(120, 200, 255, 0.18);
+    --glass-panel: rgba(14, 22, 48, 0.65);
+    --accent-cyan: #22D3EE;
+    --accent-violet: #8B5CF6;
+    --accent-magenta: #E879F9;
+    --status-green: #34D399;
+    --status-amber: #FBBF24;
+    --status-coral: #FB7185;
+    --text-primary: #E6F1FF;
+    --text-secondary: #9FB3D1;
+    --text-muted: #5F7396;
+    --font-heading: 'Orbitron', 'Space Grotesk', sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-mono: 'IBM Plex Mono', monospace;
+  }
+
+  body.clinical-mode {
+    --bg-base: #F8FAFC;
+    --bg-raised: #F1F5F9;
+    --bg-card: #FFFFFF;
+    --border-glass: rgba(15, 23, 42, 0.15);
+    --glass-panel: rgba(255, 255, 255, 0.95);
+    --accent-cyan: #0284C7;
+    --accent-violet: #6D28D9;
+    --accent-magenta: #C026D3;
+    --status-green: #059669;
+    --status-amber: #D97706;
+    --status-coral: #E11D48;
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+  }
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.font-heading {
+  font-family: var(--font-heading);
+}
+
+.font-mono-code {
+  font-family: var(--font-mono);
+}
+
+/* Glass panel */
+.glass-panel {
+  background: var(--glass-panel);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-glass);
+}
+
+/* HUD corner accents */
+.hud-corner {
+  position: relative;
+}
+.hud-corner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--accent-cyan);
+  border-left: 2px solid var(--accent-cyan);
+  pointer-events: none;
+  opacity: 0.8;
+}
+.hud-corner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-bottom: 2px solid var(--accent-cyan);
+  border-right: 2px solid var(--accent-cyan);
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+/* Scanline effect */
+.scanlines-overlay {
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.25) 50%
+  ), linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.03),
+    rgba(0, 255, 0, 0.01),
+    rgba(0, 0, 255, 0.03)
+  );
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+body.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Pulse animation for status dots */
+@keyframes softPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.92); }
+}
+.pulse-glow {
+  animation: softPulse 2.4s ease-in-out infinite;
+}
+
+/* Glowing text gradients */
+.text-gradient-chr21 {
+  background: linear-gradient(135deg, #E879F9 0%, #A855F7 50%, #8B5CF6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.text-gradient-cyan {
+  background: linear-gradient(135deg, #22D3EE 0%, #06B6D4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

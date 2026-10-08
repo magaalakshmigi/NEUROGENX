@@ -1,0 +1,6 @@
+{
+  "name": "NeuroGeneX - Genomic Research Simulation & Patient Records",
+  "description": "Computational research simulation and record-management prototype for exploring hypothetical gene-dosage models in Trisomy 21.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
